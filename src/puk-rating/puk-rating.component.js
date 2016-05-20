@@ -37,7 +37,7 @@ var RatingComponent = (function () {
     ], RatingComponent.prototype, "ratingClick", void 0);
     RatingComponent = __decorate([
         core_1.Component({
-            selector: 'app-rating',
+            selector: 'puk-rating',
             templateUrl: 'src/puk-rating/puk-rating.html',
             styleUrls: ['src/puk-rating/puk-rating.css']
         }), 

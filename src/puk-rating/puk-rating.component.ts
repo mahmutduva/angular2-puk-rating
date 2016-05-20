@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-    selector: 'app-rating',
+    selector: 'puk-rating',
     templateUrl: 'src/puk-rating/puk-rating.html',
     styleUrls: ['src/puk-rating/puk-rating.css']
 })
