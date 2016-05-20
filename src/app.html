@@ -1,1 +1,36 @@
-<p>Balam benim</p>
+<div>
+    <div class='container'>
+        <h2>Rating Component</h2>
+        <div class="panel panel-primary">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Contact</th>
+                        <th>Rating</th>
+                        <th>Rating No.</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="#item of items">
+                        <td>
+                            {{item.company}}
+                        </td>
+                        <td>
+                            {{item.contact}}
+                        </td>
+                        <td>
+                            <app-rating [rating]='item.rating' [itemId]='item.id' (ratingClick)='ratingComponetClick($event)'></app-rating>
+                        </td>
+                        <td>
+                            {{item.rating}} Stars
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <p *ngIf='ratingClicked'>The Item {{itemIdRatingClicked}} has been given {{ratingClicked}} stars</p>
+    </div>
+</div>

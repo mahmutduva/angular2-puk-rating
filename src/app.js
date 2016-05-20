@@ -66,4 +66,4 @@ var AppComponent = (function () {
 }());
 exports.AppComponent = AppComponent;
 platform_browser_dynamic_1.bootstrap(AppComponent);
-//# sourceMappingURL=main.js.map
+//# sourceMappingURL=app.js.map

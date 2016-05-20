@@ -4,11 +4,12 @@
         'app':                        'src', // 'dist',
         'rxjs':                       'node_modules/rxjs',
         'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
-        '@angular':                   'node_modules/@angular'
+        '@angular':                   'node_modules/@angular',
+        'typescript':                 'node_modules/typescript/'
     };
     // packages tells the System loader how to load when no filename and/or no extension
     var packages = {
-        'app':                        { main: 'main.js',  defaultExtension: 'js' },
+        'app':                        { main: 'app.js',  defaultExtension: 'js' },
         'rxjs':                       { defaultExtension: 'js' },
         'angular2-in-memory-web-api': { defaultExtension: 'js' },
     };
@@ -29,8 +30,17 @@
         packages[pkgName] = { main: 'index.js', defaultExtension: 'js' };
     });
     var config = {
+        transpiler: 'ts',
+        typescriptOptions: {
+            tsconfig: true
+        },
+        meta: {
+            'typescript': {
+                "exports": "ts"
+            }
+        },
         map: map,
         packages: packages
-    }
+    };
     System.config(config);
 })(this);
