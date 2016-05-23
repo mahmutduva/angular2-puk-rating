@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, ElementRef} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
     selector: 'puk-rating',
@@ -17,6 +17,9 @@ export class RatingComponent {
     @Input() pukFullImage:string;
     @Input() pukImageWidth:string;
     @Input() pukImageHeight:string;
+    @Input() pukIconBase:string;
+    @Input() pukFullIcon:string;
+    @Input() pukEmptyIcon:string;
     @Input() pukIconColor:string;
     @Input() pukIconSize:string;
     @Input() rating:number;
@@ -24,8 +27,10 @@ export class RatingComponent {
 
     @Output() pukClick = new EventEmitter();
 
-
-    constructor(el:ElementRef) {
+    /**
+     *
+     */
+    public constructor() {
         this.pukCount = this.pukCount || this.defaultCount;
     }
 
@@ -37,16 +42,25 @@ export class RatingComponent {
 
     }
 
-    onClick(pukModel:number):void {
+    private onClick(pukModel:number):void {
         this.pukModel = pukModel;
         this.pukClick.emit(this.pukModel);
     }
 
-    getClass(index:number):void {
-
+    /**
+     * @name getClass
+     * @param index
+     */
+    private getClass(index:number):Object {
+        if (this.pukEmptyImage && this.pukFullImage) {
+            return;
+        }
+        else {
+            return index <= this.pukModel ? this.pukFullIcon + ' ' + this.pukIconBase : this.pukEmptyIcon + ' ' + this.pukIconBase;
+        }
     }
 
-    getStyle(index:number):Object {
+    private getStyle(index:number):Object {
         if (this.pukEmptyImage && this.pukFullImage) {
             let image_url = index <= this.pukModel ? this.pukFullImage : this.pukEmptyImage;
             return {

@@ -10,7 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var RatingComponent = (function () {
-    function RatingComponent(el) {
+    /**
+     *
+     */
+    function RatingComponent() {
         this.defaultCount = 1;
         this.pukList = [];
         this.pukClick = new core_1.EventEmitter();
@@ -25,7 +28,17 @@ var RatingComponent = (function () {
         this.pukModel = pukModel;
         this.pukClick.emit(this.pukModel);
     };
+    /**
+     * @name getClass
+     * @param index
+     */
     RatingComponent.prototype.getClass = function (index) {
+        if (this.pukEmptyImage && this.pukFullImage) {
+            return;
+        }
+        else {
+            return index <= this.pukModel ? this.pukFullIcon + ' ' + this.pukIconBase : this.pukEmptyIcon + ' ' + this.pukIconBase;
+        }
     };
     RatingComponent.prototype.getStyle = function (index) {
         if (this.pukEmptyImage && this.pukFullImage) {
@@ -72,6 +85,18 @@ var RatingComponent = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', String)
+    ], RatingComponent.prototype, "pukIconBase", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], RatingComponent.prototype, "pukFullIcon", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], RatingComponent.prototype, "pukEmptyIcon", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
     ], RatingComponent.prototype, "pukIconColor", void 0);
     __decorate([
         core_1.Input(), 
@@ -95,7 +120,7 @@ var RatingComponent = (function () {
             templateUrl: 'src/puk-rating/puk-rating.html',
             styleUrls: ['src/puk-rating/puk-rating.css']
         }), 
-        __metadata('design:paramtypes', [core_1.ElementRef])
+        __metadata('design:paramtypes', [])
     ], RatingComponent);
     return RatingComponent;
 }());
