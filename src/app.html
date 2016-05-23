@@ -5,10 +5,23 @@
             <puk-rating
                     [pukCount]="item.puk"
                     [pukModel]="item.selectedPuk"
-                    [pukImageHeight]="'66px'"
-                    [pukImageWidth]="'66px'"
-                    [pukEmptyImage]="'images/sad.svg'"
-                    [pukFullImage]="'images/smile.svg'"
+                    [pukImageHeight]="'90px'"
+                    [pukImageWidth]="'90px'"
+                    [pukEmptyImage]="'src/images/sad.svg'"
+                    [pukFullImage]="'src/images/smile.svg'"
+                    [rating]='item.rating'
+                    [itemId]='item.id'
+                    (pukClick)='pukModelChange($event)'>
+            </puk-rating>
+
+            <puk-rating
+                    [pukCount]="item.puk"
+                    [pukModel]="item.selectedPuk"
+                    [pukIconBase]="'fa'"
+                    [pukEmptyIcon]="'fa-heart-o'"
+                    [pukFullIcon]="'fa-heart'"
+                    [pukIconColor]="'#5FBA7D'"
+                    [pukIconSize]="'80px'"
                     [rating]='item.rating'
                     [itemId]='item.id'
                     (pukClick)='pukModelChange($event)'>

@@ -1,7 +1,3 @@
-<fieldset class="rating">
-    <ul>
-       <li *ngFor="let item of pukList" (click)="onClick(item)">
-           <label title="Rocks!" >{{item}} stars</label>
-       </li>
-    </ul>
-</fieldset>
+<ul class="puk-rating">
+    <li *ngFor="let item of pukList" (click)="onClick(item)" [ngClass]="getClass(item)" [ngStyle]="getStyle(item)"></li>
+</ul>

@@ -7,7 +7,6 @@ import {Component, Input, Output, EventEmitter, ElementRef} from '@angular/core'
 })
 export class RatingComponent {
 
-    private el:HTMLElement;
     private defaultCount:number = 1;
 
     pukList:number[] = [];
@@ -15,23 +14,23 @@ export class RatingComponent {
     @Input() pukCount:number;
     @Input() pukModel:number;
     @Input() pukEmptyImage:string;
+    @Input() pukFullImage:string;
+    @Input() pukImageWidth:string;
+    @Input() pukImageHeight:string;
+    @Input() pukIconColor:string;
+    @Input() pukIconSize:string;
     @Input() rating:number;
     @Input() itemId:number;
-    @Output() pukClick:EventEmitter<any> = new EventEmitter<any>();
+
+    @Output() pukClick = new EventEmitter();
 
 
-
-    constructor(el: ElementRef) {
-        this.el = el.nativeElement;
+    constructor(el:ElementRef) {
         this.pukCount = this.pukCount || this.defaultCount;
     }
 
 
-
     ngOnInit() {
-
-        this.el.style.backgroundImage = this.pukEmptyImage;
-
         for (let i = 1; i <= this.pukCount; i++) {
             this.pukList.push(i);
         }
@@ -41,10 +40,30 @@ export class RatingComponent {
     onClick(pukModel:number):void {
         this.pukModel = pukModel;
         this.pukClick.emit(this.pukModel);
-        // this.ratingClick.emit({
-        //     itemId: this.itemId,
-        //     rating: rating
-        // });
+    }
+
+    getClass(index:number):void {
+
+    }
+
+    getStyle(index:number):Object {
+        if (this.pukEmptyImage && this.pukFullImage) {
+            let image_url = index <= this.pukModel ? this.pukFullImage : this.pukEmptyImage;
+            return {
+                "background": "url(" + image_url + ")",
+                "background-size": this.pukImageWidth + ' ' + this.pukImageHeight,
+                "display": "inline-block",
+                "width": this.pukImageWidth,
+                "height": this.pukImageHeight
+            };
+        }
+        else {
+            return {
+                "color": this.pukIconColor,
+                "font-size": this.pukIconSize
+            }
+        }
+
     }
 
 

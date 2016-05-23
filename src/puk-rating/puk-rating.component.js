@@ -14,11 +14,9 @@ var RatingComponent = (function () {
         this.defaultCount = 1;
         this.pukList = [];
         this.pukClick = new core_1.EventEmitter();
-        this.el = el.nativeElement;
         this.pukCount = this.pukCount || this.defaultCount;
     }
     RatingComponent.prototype.ngOnInit = function () {
-        this.el.style.backgroundImage = this.pukEmptyImage;
         for (var i = 1; i <= this.pukCount; i++) {
             this.pukList.push(i);
         }
@@ -26,10 +24,26 @@ var RatingComponent = (function () {
     RatingComponent.prototype.onClick = function (pukModel) {
         this.pukModel = pukModel;
         this.pukClick.emit(this.pukModel);
-        // this.ratingClick.emit({
-        //     itemId: this.itemId,
-        //     rating: rating
-        // });
+    };
+    RatingComponent.prototype.getClass = function (index) {
+    };
+    RatingComponent.prototype.getStyle = function (index) {
+        if (this.pukEmptyImage && this.pukFullImage) {
+            var image_url = index <= this.pukModel ? this.pukFullImage : this.pukEmptyImage;
+            return {
+                "background": "url(" + image_url + ")",
+                "background-size": this.pukImageWidth + ' ' + this.pukImageHeight,
+                "display": "inline-block",
+                "width": this.pukImageWidth,
+                "height": this.pukImageHeight
+            };
+        }
+        else {
+            return {
+                "color": this.pukIconColor,
+                "font-size": this.pukIconSize
+            };
+        }
     };
     __decorate([
         core_1.Input(), 
@@ -45,6 +59,26 @@ var RatingComponent = (function () {
     ], RatingComponent.prototype, "pukEmptyImage", void 0);
     __decorate([
         core_1.Input(), 
+        __metadata('design:type', String)
+    ], RatingComponent.prototype, "pukFullImage", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], RatingComponent.prototype, "pukImageWidth", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], RatingComponent.prototype, "pukImageHeight", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], RatingComponent.prototype, "pukIconColor", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], RatingComponent.prototype, "pukIconSize", void 0);
+    __decorate([
+        core_1.Input(), 
         __metadata('design:type', Number)
     ], RatingComponent.prototype, "rating", void 0);
     __decorate([
@@ -53,7 +87,7 @@ var RatingComponent = (function () {
     ], RatingComponent.prototype, "itemId", void 0);
     __decorate([
         core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
+        __metadata('design:type', Object)
     ], RatingComponent.prototype, "pukClick", void 0);
     RatingComponent = __decorate([
         core_1.Component({
