@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {Component, Input, Output, EventEmitter, ElementRef} from '@angular/core';
 
 @Component({
     selector: 'puk-rating',
@@ -6,19 +6,46 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     styleUrls: ['src/puk-rating/puk-rating.css']
 })
 export class RatingComponent {
-    @Input() rating: number;
-    @Input() itemId: number;
-    @Output() ratingClick: EventEmitter<any> = new EventEmitter<any>();
 
-    inpustName:string;
+    private el:HTMLElement;
+    private defaultCount:number = 1;
+
+    pukList:number[] = [];
+
+    @Input() pukCount:number;
+    @Input() pukModel:number;
+    @Input() pukEmptyImage:string;
+    @Input() rating:number;
+    @Input() itemId:number;
+    @Output() pukClick:EventEmitter<any> = new EventEmitter<any>();
+
+
+
+    constructor(el: ElementRef) {
+        this.el = el.nativeElement;
+        this.pukCount = this.pukCount || this.defaultCount;
+    }
+
+
+
     ngOnInit() {
-        this.inpustName = this.itemId + '_rating';
+
+        this.el.style.backgroundImage = this.pukEmptyImage;
+
+        for (let i = 1; i <= this.pukCount; i++) {
+            this.pukList.push(i);
+        }
+
     }
-    onClick(rating: number): void {
-        this.rating = rating;
-        this.ratingClick.emit({
-            itemId: this.itemId,
-            rating: rating
-        });
+
+    onClick(pukModel:number):void {
+        this.pukModel = pukModel;
+        this.pukClick.emit(this.pukModel);
+        // this.ratingClick.emit({
+        //     itemId: this.itemId,
+        //     rating: rating
+        // });
     }
+
+
 }

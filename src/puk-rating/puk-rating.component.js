@@ -10,19 +10,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var RatingComponent = (function () {
-    function RatingComponent() {
-        this.ratingClick = new core_1.EventEmitter();
+    function RatingComponent(el) {
+        this.defaultCount = 1;
+        this.pukList = [];
+        this.pukClick = new core_1.EventEmitter();
+        this.el = el.nativeElement;
+        this.pukCount = this.pukCount || this.defaultCount;
     }
     RatingComponent.prototype.ngOnInit = function () {
-        this.inpustName = this.itemId + '_rating';
+        this.el.style.backgroundImage = this.pukEmptyImage;
+        for (var i = 1; i <= this.pukCount; i++) {
+            this.pukList.push(i);
+        }
     };
-    RatingComponent.prototype.onClick = function (rating) {
-        this.rating = rating;
-        this.ratingClick.emit({
-            itemId: this.itemId,
-            rating: rating
-        });
+    RatingComponent.prototype.onClick = function (pukModel) {
+        this.pukModel = pukModel;
+        this.pukClick.emit(this.pukModel);
+        // this.ratingClick.emit({
+        //     itemId: this.itemId,
+        //     rating: rating
+        // });
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], RatingComponent.prototype, "pukCount", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], RatingComponent.prototype, "pukModel", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], RatingComponent.prototype, "pukEmptyImage", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Number)
@@ -34,14 +54,14 @@ var RatingComponent = (function () {
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
-    ], RatingComponent.prototype, "ratingClick", void 0);
+    ], RatingComponent.prototype, "pukClick", void 0);
     RatingComponent = __decorate([
         core_1.Component({
             selector: 'puk-rating',
             templateUrl: 'src/puk-rating/puk-rating.html',
             styleUrls: ['src/puk-rating/puk-rating.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [core_1.ElementRef])
     ], RatingComponent);
     return RatingComponent;
 }());

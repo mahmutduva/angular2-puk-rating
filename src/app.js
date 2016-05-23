@@ -13,47 +13,19 @@ var puk_rating_component_1 = require('./puk-rating/puk-rating.component');
 var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
 var AppComponent = (function () {
     function AppComponent() {
-        this.items = [
-            {
-                "id": 0,
-                "rating": 3,
-                "contact": "Dennis Phillips",
-                "company": "PROFLEX"
-            },
-            {
-                "id": 1,
-                "rating": 1,
-                "contact": "Morgan Mccarthy",
-                "company": "CENTREXIN"
-            },
-            {
-                "id": 2,
-                "rating": 2,
-                "contact": "Brady Craft",
-                "company": "JIMBIES"
-            },
-            {
-                "id": 3,
-                "rating": 5,
-                "contact": "Alvarado Roman",
-                "company": "TERRAGO"
-            },
-            {
-                "id": 4,
-                "rating": 4,
-                "contact": "Clark Daugherty",
-                "company": "ISOTRONIC"
-            }
-        ];
+        this.item = {
+            "id": 0,
+            "puk": 4,
+            "selectedPuk": 3,
+            "rating": 3,
+            "contact": "Dennis Phillips",
+            "company": "PROFLEX"
+        };
     }
-    AppComponent.prototype.ratingComponetClick = function (clickObj) {
-        var item = this.items.filter(function (item) { return item.id === clickObj.itemId; });
-        if (!!item && item.length === 1) {
-            item[0].rating = clickObj.rating;
-            this.ratingClicked = clickObj.rating;
-            this.itemIdRatingClicked = clickObj.itemId;
-        }
+    AppComponent.prototype.pukModelChange = function (newPukValue) {
+        this.item.selectedPuk = newPukValue;
     };
+    ;
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',

@@ -1,35 +1,19 @@
 <div>
     <div class='container'>
-        <h2>Rating Component</h2>
+        <h2>Puk Rating</h2>
         <div class="panel panel-primary">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Company</th>
-                        <th>Contact</th>
-                        <th>Rating</th>
-                        <th>Rating No.</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr *ngFor="#item of items">
-                        <td>
-                            {{item.company}}
-                        </td>
-                        <td>
-                            {{item.contact}}
-                        </td>
-                        <td>
-                            <puk-rating [rating]='item.rating' [itemId]='item.id' (ratingClick)='ratingComponetClick($event)'></puk-rating>
-                        </td>
-                        <td>
-                            {{item.rating}} Stars
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+            <puk-rating
+                    [pukCount]="item.puk"
+                    [pukModel]="item.selectedPuk"
+                    [pukImageHeight]="'66px'"
+                    [pukImageWidth]="'66px'"
+                    [pukEmptyImage]="'images/sad.svg'"
+                    [pukFullImage]="'images/smile.svg'"
+                    [rating]='item.rating'
+                    [itemId]='item.id'
+                    (pukClick)='pukModelChange($event)'>
+            </puk-rating>
+            {{item.selectedPuk}}
         </div>
         <p *ngIf='ratingClicked'>The Item {{itemIdRatingClicked}} has been given {{ratingClicked}} stars</p>
     </div>
