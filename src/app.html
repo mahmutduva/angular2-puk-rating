@@ -9,9 +9,8 @@
                     [pukImageWidth]="'90px'"
                     [pukEmptyImage]="'src/images/sad.svg'"
                     [pukFullImage]="'src/images/smile.svg'"
-                    [rating]='item.rating'
-                    [itemId]='item.id'
-                    (pukClick)='pukModelChange($event)'>
+                    (pukClick)="pukChange($event)"
+                    (pukHover)="pukHover($event)">
             </puk-rating>
 
             <puk-rating
@@ -22,9 +21,8 @@
                     [pukFullIcon]="'fa-heart'"
                     [pukIconColor]="'#5FBA7D'"
                     [pukIconSize]="'80px'"
-                    [rating]='item.rating'
-                    [itemId]='item.id'
-                    (pukClick)='pukModelChange($event)'>
+                    (pukClick)="pukChange($event)"
+                    (pukHover)="pukHover($event)">
             </puk-rating>
             {{item.selectedPuk}}
         </div>

@@ -8,6 +8,7 @@ import {bootstrap} from '@angular/platform-browser-dynamic';
     directives: [RatingComponent]
 })
 export class AppComponent {
+
     public item:any =
     {
         "id": 0,
@@ -18,9 +19,24 @@ export class AppComponent {
         "company": "PROFLEX"
     };
 
-    pukModelChange(newPukValue:any):void {
+
+    /**
+     * @name pukModelChange
+     * @param newPukValue
+     */
+    pukChange(newPukValue:number):void {
         this.item.selectedPuk = newPukValue;
     };
+
+
+    /**
+     * @name pukModelHover
+     * @param pukValue
+     */
+    pukHover(pukValue:number){
+            console.log(pukValue)
+    }
+
 }
 
 bootstrap(AppComponent);

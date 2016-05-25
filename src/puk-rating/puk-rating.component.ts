@@ -1,4 +1,5 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter, ElementRef} from '@angular/core';
+
 
 @Component({
     selector: 'puk-rating',
@@ -7,9 +8,9 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 })
 export class RatingComponent {
 
+    private el:HTMLElement;
     private defaultCount:number = 1;
-
-    pukList:number[] = [];
+    private pukList:number[] = [];
 
     @Input() pukCount:number;
     @Input() pukModel:number;
@@ -26,11 +27,10 @@ export class RatingComponent {
     @Input() itemId:number;
 
     @Output() pukClick = new EventEmitter();
+    @Output() pukHover = new EventEmitter();
 
-    /**
-     *
-     */
-    public constructor() {
+
+    constructor(el:ElementRef) {
         this.pukCount = this.pukCount || this.defaultCount;
     }
 
@@ -42,16 +42,34 @@ export class RatingComponent {
 
     }
 
+    /**
+     * @name onClick
+     * @param pukModel
+     */
     private onClick(pukModel:number):void {
         this.pukModel = pukModel;
-        this.pukClick.emit(this.pukModel);
+        this.pukClick.emit(pukModel);
     }
+
+
+    /**
+     * @name onMouseEnter
+     * @param pukModel
+     */
+    private onMouseEnter(pukModel:number):void {
+
+        this.pukHover.emit(pukModel);
+
+    }
+
 
     /**
      * @name getClass
      * @param index
+     * @returns {string}
      */
     private getClass(index:number):Object {
+        debugger
         if (this.pukEmptyImage && this.pukFullImage) {
             return;
         }
@@ -60,6 +78,12 @@ export class RatingComponent {
         }
     }
 
+
+    /**
+     * @name getStyle
+     * @param index
+     * @returns {any}
+     */
     private getStyle(index:number):Object {
         if (this.pukEmptyImage && this.pukFullImage) {
             let image_url = index <= this.pukModel ? this.pukFullImage : this.pukEmptyImage;

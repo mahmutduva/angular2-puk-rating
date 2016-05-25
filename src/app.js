@@ -22,10 +22,21 @@ var AppComponent = (function () {
             "company": "PROFLEX"
         };
     }
-    AppComponent.prototype.pukModelChange = function (newPukValue) {
+    /**
+     * @name pukModelChange
+     * @param newPukValue
+     */
+    AppComponent.prototype.pukChange = function (newPukValue) {
         this.item.selectedPuk = newPukValue;
     };
     ;
+    /**
+     * @name pukModelHover
+     * @param pukValue
+     */
+    AppComponent.prototype.pukHover = function (pukValue) {
+        console.log(pukValue);
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',

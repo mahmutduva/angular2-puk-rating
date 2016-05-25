@@ -10,13 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var RatingComponent = (function () {
-    /**
-     *
-     */
-    function RatingComponent() {
+    function RatingComponent(el) {
         this.defaultCount = 1;
         this.pukList = [];
         this.pukClick = new core_1.EventEmitter();
+        this.pukHover = new core_1.EventEmitter();
         this.pukCount = this.pukCount || this.defaultCount;
     }
     RatingComponent.prototype.ngOnInit = function () {
@@ -24,15 +22,28 @@ var RatingComponent = (function () {
             this.pukList.push(i);
         }
     };
+    /**
+     * @name onClick
+     * @param pukModel
+     */
     RatingComponent.prototype.onClick = function (pukModel) {
         this.pukModel = pukModel;
-        this.pukClick.emit(this.pukModel);
+        this.pukClick.emit(pukModel);
+    };
+    /**
+     * @name onMouseEnter
+     * @param pukModel
+     */
+    RatingComponent.prototype.onMouseEnter = function (pukModel) {
+        this.pukHover.emit(pukModel);
     };
     /**
      * @name getClass
      * @param index
+     * @returns {string}
      */
     RatingComponent.prototype.getClass = function (index) {
+        debugger;
         if (this.pukEmptyImage && this.pukFullImage) {
             return;
         }
@@ -40,6 +51,11 @@ var RatingComponent = (function () {
             return index <= this.pukModel ? this.pukFullIcon + ' ' + this.pukIconBase : this.pukEmptyIcon + ' ' + this.pukIconBase;
         }
     };
+    /**
+     * @name getStyle
+     * @param index
+     * @returns {any}
+     */
     RatingComponent.prototype.getStyle = function (index) {
         if (this.pukEmptyImage && this.pukFullImage) {
             var image_url = index <= this.pukModel ? this.pukFullImage : this.pukEmptyImage;
@@ -114,13 +130,17 @@ var RatingComponent = (function () {
         core_1.Output(), 
         __metadata('design:type', Object)
     ], RatingComponent.prototype, "pukClick", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], RatingComponent.prototype, "pukHover", void 0);
     RatingComponent = __decorate([
         core_1.Component({
             selector: 'puk-rating',
             templateUrl: 'src/puk-rating/puk-rating.html',
             styleUrls: ['src/puk-rating/puk-rating.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [core_1.ElementRef])
     ], RatingComponent);
     return RatingComponent;
 }());
