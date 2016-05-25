@@ -1,31 +1,34 @@
 <div>
     <div class='container'>
         <h2>Puk Rating</h2>
-        <div class="panel panel-primary">
+        <div class="panel">
             <puk-rating
-                    [pukCount]="item.puk"
-                    [pukModel]="item.selectedPuk"
+                    [pukCount]="itemImage.puk"
+                    [pukModel]="itemImage.selectedPuk"
                     [pukImageHeight]="'90px'"
                     [pukImageWidth]="'90px'"
                     [pukEmptyImage]="'src/images/sad.svg'"
                     [pukFullImage]="'src/images/smile.svg'"
-                    (pukClick)="pukChange($event)"
+                    (pukClick)="pukChangeImage($event)"
                     (pukHover)="pukHover($event)">
             </puk-rating>
 
+            <p class="text">{{itemHover}} selected puk when hover item</p>
+
+        </div>
+        <div class="panel">
+
             <puk-rating
-                    [pukCount]="item.puk"
-                    [pukModel]="item.selectedPuk"
+                    [pukCount]="itemSvg.puk"
+                    [pukModel]="itemSvg.selectedPuk"
                     [pukIconBase]="'fa'"
                     [pukEmptyIcon]="'fa-heart-o'"
                     [pukFullIcon]="'fa-heart'"
                     [pukIconColor]="'#5FBA7D'"
                     [pukIconSize]="'80px'"
-                    (pukClick)="pukChange($event)"
-                    (pukHover)="pukHover($event)">
+                    (pukClick)="pukChangeSvg($event)">
             </puk-rating>
-            {{item.selectedPuk}}
+            <p class="text">{{itemSvg.selectedPuk}} selected puk when click item</p>
         </div>
-        <p *ngIf='ratingClicked'>The Item {{itemIdRatingClicked}} has been given {{ratingClicked}} stars</p>
     </div>
 </div>

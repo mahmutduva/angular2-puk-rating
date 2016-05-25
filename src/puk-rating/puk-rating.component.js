@@ -35,7 +35,11 @@ var RatingComponent = (function () {
      * @param pukModel
      */
     RatingComponent.prototype.onMouseEnter = function (pukModel) {
+        this.pukHoverIndex = pukModel;
         this.pukHover.emit(pukModel);
+    };
+    RatingComponent.prototype.onMouseLeave = function () {
+        this.pukHoverIndex = null;
     };
     /**
      * @name getClass
@@ -43,11 +47,13 @@ var RatingComponent = (function () {
      * @returns {string}
      */
     RatingComponent.prototype.getClass = function (index) {
-        debugger;
         if (this.pukEmptyImage && this.pukFullImage) {
             return;
         }
         else {
+            if (this.pukHoverIndex) {
+                return index <= this.pukHoverIndex ? this.pukFullIcon + ' ' + this.pukIconBase : this.pukEmptyIcon + ' ' + this.pukIconBase;
+            }
             return index <= this.pukModel ? this.pukFullIcon + ' ' + this.pukIconBase : this.pukEmptyIcon + ' ' + this.pukIconBase;
         }
     };
@@ -58,7 +64,13 @@ var RatingComponent = (function () {
      */
     RatingComponent.prototype.getStyle = function (index) {
         if (this.pukEmptyImage && this.pukFullImage) {
-            var image_url = index <= this.pukModel ? this.pukFullImage : this.pukEmptyImage;
+            var image_url = void 0;
+            if (this.pukHoverIndex) {
+                image_url = index <= this.pukHoverIndex ? this.pukFullImage : this.pukEmptyImage;
+            }
+            else {
+                image_url = index <= this.pukModel ? this.pukFullImage : this.pukEmptyImage;
+            }
             return {
                 "background": "url(" + image_url + ")",
                 "background-size": this.pukImageWidth + ' ' + this.pukImageHeight,

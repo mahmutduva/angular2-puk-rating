@@ -11,6 +11,7 @@ export class RatingComponent {
     private el:HTMLElement;
     private defaultCount:number = 1;
     private pukList:number[] = [];
+    private pukHoverIndex:number;
 
     @Input() pukCount:number;
     @Input() pukModel:number;
@@ -58,8 +59,13 @@ export class RatingComponent {
      */
     private onMouseEnter(pukModel:number):void {
 
+        this.pukHoverIndex = pukModel;
         this.pukHover.emit(pukModel);
+    }
 
+
+    private onMouseLeave():void{
+        this.pukHoverIndex = null;
     }
 
 
@@ -69,11 +75,13 @@ export class RatingComponent {
      * @returns {string}
      */
     private getClass(index:number):Object {
-        debugger
         if (this.pukEmptyImage && this.pukFullImage) {
             return;
         }
         else {
+            if (this.pukHoverIndex) {
+                return index <= this.pukHoverIndex ? this.pukFullIcon + ' ' + this.pukIconBase : this.pukEmptyIcon + ' ' + this.pukIconBase;
+            }
             return index <= this.pukModel ? this.pukFullIcon + ' ' + this.pukIconBase : this.pukEmptyIcon + ' ' + this.pukIconBase;
         }
     }
@@ -86,7 +94,16 @@ export class RatingComponent {
      */
     private getStyle(index:number):Object {
         if (this.pukEmptyImage && this.pukFullImage) {
-            let image_url = index <= this.pukModel ? this.pukFullImage : this.pukEmptyImage;
+
+            let image_url;
+            if (this.pukHoverIndex) {
+                image_url = index <= this.pukHoverIndex ? this.pukFullImage : this.pukEmptyImage;
+            }
+            else {
+                image_url = index <= this.pukModel ? this.pukFullImage : this.pukEmptyImage;
+            }
+
+
             return {
                 "background": "url(" + image_url + ")",
                 "background-size": this.pukImageWidth + ' ' + this.pukImageHeight,

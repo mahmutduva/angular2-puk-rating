@@ -1,5 +1,5 @@
 <ul class="puk-rating">
-    <li *ngFor="let item of pukList" (click)="onClick(item)" (mouseenter)="onMouseEnter(item)">
-        <i [ngClass]="getClass(item)" [ngStyle]="getStyle(item)"></i>
+    <li *ngFor="let item of pukList"  (mouseenter)="onMouseEnter(item)" (mouseleave)="onMouseLeave()">
+        <i [ngClass]="getClass(item)" [ngStyle]="getStyle(item)" (click)="onClick(item)"></i>
     </li>
 </ul>

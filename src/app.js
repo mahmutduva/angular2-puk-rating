@@ -13,21 +13,29 @@ var puk_rating_component_1 = require('./puk-rating/puk-rating.component');
 var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
 var AppComponent = (function () {
     function AppComponent() {
-        this.item = {
-            "id": 0,
+        this.itemImage = {
             "puk": 4,
             "selectedPuk": 3,
-            "rating": 3,
-            "contact": "Dennis Phillips",
-            "company": "PROFLEX"
+        };
+        this.itemSvg = {
+            "puk": 8,
+            "selectedPuk": 2,
         };
     }
     /**
-     * @name pukModelChange
+     * @name pukChangeSvg
      * @param newPukValue
      */
-    AppComponent.prototype.pukChange = function (newPukValue) {
-        this.item.selectedPuk = newPukValue;
+    AppComponent.prototype.pukChangeSvg = function (newPukValue) {
+        this.itemSvg.selectedPuk = newPukValue;
+    };
+    ;
+    /**
+     * @name pukChangeImage
+     * @param newPukValue
+     */
+    AppComponent.prototype.pukChangeImage = function (newPukValue) {
+        this.itemSvg.selectedPuk = newPukValue;
     };
     ;
     /**
@@ -35,13 +43,14 @@ var AppComponent = (function () {
      * @param pukValue
      */
     AppComponent.prototype.pukHover = function (pukValue) {
-        console.log(pukValue);
+        this.itemHover = pukValue;
     };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
             templateUrl: 'src/app.html',
-            directives: [puk_rating_component_1.RatingComponent]
+            directives: [puk_rating_component_1.RatingComponent],
+            styles: ["\n    .panel {\n      display: inline-block;\n      width: 100%;\n      margin-bottom: 50px;\n    }\n    .text{\n        display: inline-block; \n        margin-left: 50px;\n        font-size: 32px;\n    }\n  "],
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

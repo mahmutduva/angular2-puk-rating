@@ -5,27 +5,51 @@ import {bootstrap} from '@angular/platform-browser-dynamic';
 @Component({
     selector: 'my-app',
     templateUrl: 'src/app.html',
-    directives: [RatingComponent]
+    directives: [RatingComponent],
+    styles: [`
+    .panel {
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 50px;
+    }
+    .text{
+        display: inline-block; 
+        margin-left: 50px;
+        font-size: 32px;
+    }
+  `],
 })
 export class AppComponent {
 
-    public item:any =
+    public itemImage:any =
     {
-        "id": 0,
         "puk": 4,
         "selectedPuk": 3,
-        "rating": 3,
-        "contact": "Dennis Phillips",
-        "company": "PROFLEX"
+    };
+
+    public itemSvg:any =
+    {
+        "puk": 8,
+        "selectedPuk": 2,
+    };
+
+    public itemHover:number;
+
+    /**
+     * @name pukChangeSvg
+     * @param newPukValue
+     */
+    pukChangeSvg(newPukValue:number):void {
+        this.itemSvg.selectedPuk = newPukValue;
     };
 
 
     /**
-     * @name pukModelChange
+     * @name pukChangeImage
      * @param newPukValue
      */
-    pukChange(newPukValue:number):void {
-        this.item.selectedPuk = newPukValue;
+    pukChangeImage(newPukValue:number):void {
+        this.itemSvg.selectedPuk = newPukValue;
     };
 
 
@@ -33,8 +57,8 @@ export class AppComponent {
      * @name pukModelHover
      * @param pukValue
      */
-    pukHover(pukValue:number){
-            console.log(pukValue)
+    pukHover(pukValue:number) {
+        this.itemHover = pukValue;
     }
 
 }
