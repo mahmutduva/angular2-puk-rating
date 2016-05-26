@@ -35,7 +35,7 @@ var AppComponent = (function () {
      * @param newPukValue
      */
     AppComponent.prototype.pukChangeImage = function (newPukValue) {
-        this.itemSvg.selectedPuk = newPukValue;
+        this.itemImage.selectedPuk = newPukValue;
     };
     ;
     /**

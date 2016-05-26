@@ -49,7 +49,7 @@ export class AppComponent {
      * @param newPukValue
      */
     pukChangeImage(newPukValue:number):void {
-        this.itemSvg.selectedPuk = newPukValue;
+        this.itemImage.selectedPuk = newPukValue;
     };
 
 

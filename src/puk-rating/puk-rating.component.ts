@@ -103,10 +103,9 @@ export class RatingComponent {
                 image_url = index <= this.pukModel ? this.pukFullImage : this.pukEmptyImage;
             }
 
-
             return {
-                "background": "url(" + image_url + ")",
                 "background-size": this.pukImageWidth + ' ' + this.pukImageHeight,
+                "background-image": "url(" + image_url + ")",
                 "display": "inline-block",
                 "width": this.pukImageWidth,
                 "height": this.pukImageHeight
