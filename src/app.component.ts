@@ -1,11 +1,8 @@
 import {Component} from '@angular/core';
-import {RatingComponent} from './puk-rating/puk-rating.component';
-import {bootstrap} from '@angular/platform-browser-dynamic';
 
 @Component({
     selector: 'my-app',
     templateUrl: 'src/app.html',
-    directives: [RatingComponent],
     styles: [`
     .panel {
       display: inline-block;
@@ -63,4 +60,3 @@ export class AppComponent {
 
 }
 
-bootstrap(AppComponent);

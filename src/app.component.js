@@ -9,8 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var puk_rating_component_1 = require('./puk-rating/puk-rating.component');
-var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
 var AppComponent = (function () {
     function AppComponent() {
         this.itemImage = {
@@ -49,7 +47,6 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'my-app',
             templateUrl: 'src/app.html',
-            directives: [puk_rating_component_1.RatingComponent],
             styles: ["\n    .panel {\n      display: inline-block;\n      width: 100%;\n      margin-bottom: 50px;\n    }\n    .text{\n        display: inline-block; \n        margin-left: 50px;\n        font-size: 32px;\n    }\n  "],
         }), 
         __metadata('design:paramtypes', [])
@@ -57,5 +54,4 @@ var AppComponent = (function () {
     return AppComponent;
 }());
 exports.AppComponent = AppComponent;
-platform_browser_dynamic_1.bootstrap(AppComponent);
-//# sourceMappingURL=app.js.map
+//# sourceMappingURL=app.component.js.map
