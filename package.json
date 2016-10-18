@@ -1,6 +1,6 @@
 {
   "name": "angular2-puk-rating",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "Rating with angular2",
   "main": "system.config.js",
   "scripts": {
@@ -16,7 +16,10 @@
     "url": "git+https://github.com/mahmutduva/angular2-puk-rating.git"
   },
   "keywords": [
-    "rating"
+    "rating",
+    "star",
+    "puk",
+    "star rating"
   ],
   "author": "Mahmut Duva",
   "license": "MIT",
