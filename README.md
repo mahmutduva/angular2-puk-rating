@@ -101,8 +101,6 @@ export class AppComponent {
 
 
 ```Html
-// app.html
-
 <puk-rating
    [pukCount]="itemImage.puk"
    [pukModel]="itemImage.selectedPuk"
